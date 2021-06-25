@@ -1,64 +1,80 @@
-require('dotenv').config();
-const fs = require('fs');
-const { BigQuery } = require('@google-cloud/bigquery');
-const nunjucks = require('nunjucks');
-const nodemailer = require('nodemailer');
+require("dotenv").config();
+const { BigQuery } = require("@google-cloud/bigquery");
+const nunjucks = require("nunjucks");
+const nodemailer = require("nodemailer");
+
 
 const bqClient = new BigQuery({
   scopes: [
-    'https://www.googleapis.com/auth/bigquery',
-    'https://www.googleapis.com/auth/drive',
+    "https://www.googleapis.com/auth/bigquery",
+    "https://www.googleapis.com/auth/drive",
   ],
 });
 
-const DATASET = 'curb_tracking';
+const DATASET = "curb_tracking";
 
-const get = async () => {
-  const query = `SELECT * FROM ${DATASET}._EmailAlert`;
-  const queryOptions = {
-    query,
+const EmailAlert = {
+  get = async () => {
+    const query = `SELECT * FROM ${DATASET}._EmailAlert`;
+    const queryOptions = {
+      query,
+    };
+    const [rows] = await bqClient.query(queryOptions);
+    return rows;
   };
-  const [rows] = await bqClient.query(queryOptions);
-  return rows;
-};
 
-const compose = async (rows) => {
-  nunjucks.configure('views', { autoescape: true });
-  const html = nunjucks.render('reports.html', { rows });
-  return html;
-};
+  const transform = (rows) =>
+  rows.map((row) => ({
+    location: row.location,
+    channel: row.channel,
+    metrics: row.metrics.map((metric) => ({
+      name: metric.name.toUppercase(),
+      value: metric.value.map((x) => ({
+        api: x.api.toLocaleString(),
+        manual: x.manual.toLocaleString(),
+        diff: x.diff.toLocaleString(),
+        perc_diff: (x.perc_diff * 100).toLocaleString({
+          minimumFractionDigits: 2,
+        }),
+      })),
+    })),
+  }));
 
-const sendEmail = async (html) => {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'siddhantmehandru.developer@gmail.com',
-      pass: process.env.APP_PWD,
-    },
-  });
+  const compose = async (rows) => {
+    nunjucks.configure("views", { autoescape: true });
+    const html = nunjucks.render("reports.html", { rows });
+    return html;
+  };
 
-  const info = await transporter.sendMail({
-    from: '"Sid Dev" <siddhantmehandru.developer@gmail.com>',
-    to: 'hieumdd@gmail.com, jhamb285@gmail.com',
-    subject: 'Hello ✔',
-    text: 'Hello world?',
-    html,
-  });
+  const sendEmail = async (html) => {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "siddhantmehandru.developer@gmail.com",
+        pass: process.env.APP_PWD,
+      },
+    });
+  
+    const info = await transporter.sendMail({
+      from: '"Sid Dev" <siddhantmehandru.developer@gmail.com>',
+      to: "hieumdd@gmail.com, jhamb285@gmail.com",
+      subject: "Hello ✔",
+      text: "Hello world?",
+      html,
+    });
+  
+    return {messageSent: info.messageId};
+  };
 
-  info;
+  const run = async () => {
+    const rows = await get();
+    const transformedRows = transform(rows);
+    const html = await compose(transformedRows);
+    await sendEmail(html);
+  };
+}
 
-  console.log('Message sent: %s', info.messageId);
-};
-
-const run = async () => {
-  const rows = await get();
-  const html = await compose(rows);
-  await sendEmail(html);
-};
-
-(async () => {
-  await run();
-})();
+module.exports = EmailAlert;
