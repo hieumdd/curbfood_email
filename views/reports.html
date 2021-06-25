@@ -1,0 +1,14 @@
+<h2>API vs. Manual Diff</h2>
+<ul>
+    {% for row in rows -%}
+    <li>
+        <ul>
+            {% for metric in row.metrics -%}
+            <li>
+                [{{ metric.name }}] - [{{ row.location }} - {{ row.channel }}] API: <b>{{ metric.value.api }}</b> | Manual: <b>{{ metric.value.manual }}</b> | Diff: <b>{{ metric.value.diff }}</b> | %Diff: <b>{{ metric.value.perc_diff }}
+            </li>
+            {%- endfor %}
+        </ul>
+    </li>
+    {%- endfor %}
+</ul>
