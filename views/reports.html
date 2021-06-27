@@ -1,14 +1,23 @@
 <h2>API vs. Manual Diff</h2>
+<h3>By Location</h3>
 <ul>
     {% for row in rows -%}
-    <li>
-        <ul>
-            {% for metric in row.metrics -%}
+        {% for metric in row.l_metrics -%}
             <li>
-                [{{ metric.name }}] - [{{ row.location }} - {{ row.channel }}] API: <b>{{ metric.value.api }}</b> | Manual: <b>{{ metric.value.manual }}</b> | Diff: <b>{{ metric.value.diff }}</b> | %Diff: <b>{{ metric.value.perc_diff }}
+                [{{ metric.name }}] - [{{ row.location }}] API: <b>{{ metric.value.api }}</b> | Manual: <b>{{ metric.value.manual }}</b> | Diff: <b>{{ metric.value.diff }}</b> | %Diff: <b>{{ metric.value.perc_diff }}
+            </li>
+        {%- endfor %}
+    {%- endfor %}
+</ul>
+<h3>By Location - Channel</h3>
+<ul>
+    {% for row in rows -%}
+        {% for channel in row.channel -%}
+            {% for metric in channel.lc_metrics -%}
+            <li>
+                [{{ metric.name }}] - [{{ row.location }} - {{ channel.channel }}] API: <b>{{ metric.value.api }}</b> | Manual: <b>{{ metric.value.manual }}</b> | Diff: <b>{{ metric.value.diff }}</b> | %Diff: <b>{{ metric.value.perc_diff }}
             </li>
             {%- endfor %}
-        </ul>
-    </li>
+        {%- endfor %}
     {%- endfor %}
 </ul>
