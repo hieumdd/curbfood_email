@@ -1,0 +1,8 @@
+{% import "standard.html.j2" as standard %}
+{% import "location.html.j2" as location %}
+{% import "location_channel.html.j2" as location_channel %}
+
+<h2>Weekly Data Sanity Check</h2>
+{{ standard.standard(views['standard'])}}
+{{ location.location(views['location'])}}
+{{ location_channel.location_channel(views['location_channel'])}}

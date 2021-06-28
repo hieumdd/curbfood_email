@@ -1,0 +1,14 @@
+{% macro standard(rows) -%}
+<h3>Total</h3>
+<ul>
+  {% for row in rows %}
+    {% for metric in row.metrics %}
+      <li>
+          {{ metric.name }} || Data Studio: <b>{{ metric.value.api }}</b> | Deliverect Weekly Report: <b>{{ metric.value.manual }}</b> | Diff: <b>{{ metric.value.diff }}</b> | %Diff: <b>{{ metric.value.perc_diff }}
+      </li>
+    {%- endfor %}
+  {%- endfor %}
+</ul>
+{% endmacro %}
+
+

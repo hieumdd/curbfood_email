@@ -1,0 +1,213 @@
+{
+    "standard": [
+        {
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "457,988.0",
+                        "manual": "459,767",
+                        "diff": "-1,779.0",
+                        "perc_diff": "-0.39"
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        {
+            "location": "Lindhagensgatan",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "174,941.0",
+                        "manual": "175,947",
+                        "diff": "-1,006.0",
+                        "perc_diff": "-0.58"
+                    }
+                }
+            ]
+        },
+        {
+            "location": "Mayfair",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "181,694.0",
+                        "manual": "181,869",
+                        "diff": "-175.0",
+                        "perc_diff": "-0.10"
+                    }
+                }
+            ]
+        },
+        {
+            "location": "Ilse",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "101,353.0",
+                        "manual": "101,951",
+                        "diff": "-598.0",
+                        "perc_diff": "-0.59"
+                    }
+                }
+            ]
+        }
+    ],
+    "location_channel": [
+        {
+            "locations": "Lindhagensgatan",
+            "channel": "Foodora",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "87,695.0",
+                        "manual": "87,914",
+                        "diff": "-219.0",
+                        "perc_diff": "-0.25"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Ilse",
+            "channel": "Uber Eats",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "26,026.0",
+                        "manual": "26,418",
+                        "diff": "-392.0",
+                        "perc_diff": "-1.51"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Ilse",
+            "channel": "Foodora",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "48,495.0",
+                        "manual": "48,676",
+                        "diff": "-181.0",
+                        "perc_diff": "-0.37"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Mayfair",
+            "channel": "Wolt",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "176,063.0",
+                        "manual": "176,238",
+                        "diff": "-175.0",
+                        "perc_diff": "-0.10"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Lindhagensgatan",
+            "channel": "Wolt",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "33,527.0",
+                        "manual": "33,566",
+                        "diff": "-39.0",
+                        "perc_diff": "-0.12"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Lindhagensgatan",
+            "channel": "Uber Eats",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "44,409.0",
+                        "manual": "45,038",
+                        "diff": "-629.0",
+                        "perc_diff": "-1.42"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Lindhagensgatan",
+            "channel": "Bolt",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "9,310.0",
+                        "manual": "9,429",
+                        "diff": "-119.0",
+                        "perc_diff": "-1.28"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Ilse",
+            "channel": "Bolt",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "4,022.0",
+                        "manual": "4,047",
+                        "diff": "-25.0",
+                        "perc_diff": "-0.62"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Ilse",
+            "channel": "Wolt",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "22,810.0",
+                        "manual": "22,810",
+                        "diff": "0.0",
+                        "perc_diff": "0.00"
+                    }
+                }
+            ]
+        },
+        {
+            "locations": "Mayfair",
+            "channel": "Hungry.dk",
+            "metrics": [
+                {
+                    "name": "revenue",
+                    "value": {
+                        "api": "5,631.0",
+                        "manual": "5,631",
+                        "diff": "0.0",
+                        "perc_diff": "0.00"
+                    }
+                }
+            ]
+        }
+    ]
+}
